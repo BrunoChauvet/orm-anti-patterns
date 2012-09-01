@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.dius.transaction.dao" />
+	<jpa:repositories base-package="com.dius.transaction.dao"/>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${db.driverClass}" />
+        <property name="jdbcUrl" value="${db.url}" />
+        <property name="user" value="${db.username}" />
+        <property name="password" value="${db.password}" />
+        <property name="initialPoolSize" value="${db.initialPoolSize}" />
+        <property name="minPoolSize" value="${db.minPoolSize}" />
+        <property name="maxPoolSize" value="${db.maxPoolSize}" />
+		<property name="acquireIncrement" value="${db.acquireIncrement}" />
+        <property name="idleConnectionTestPeriod" value="${db.idleConnectionTestPeriod}" />
+        <property name="maxIdleTime" value="${db.maxIdleTime}" />
+        <property name="preferredTestQuery" value="${db.validationQuery}" />
+    </bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="transaction" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceXmlLocation" value="classpath:/persistence-transaction.xml" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="${db.showSql}" />
+				<property name="generateDdl" value="${db.generateDdl}" />
+				<property name="database" value="${db.database}" />
+			</bean>
+		</property>
+		<property name="jpaPropertyMap">
+			<map>
+				<entry key="hibernate.hbm2ddl.auto" value="${db.hbm2ddl.auto}" />
+				<entry key="hibernate.cache.use_second_level_cache" value="${db.useSecondLevelCache}" />
+				<entry key="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy" />
+				<entry key="hibernate.generate_statistics" value="true" />
+				<entry key="hibernate.jdbc.batch_size" value="${db.batchSize}" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="sessionFactory" factory-bean="entityManagerFactory" factory-method="getSessionFactory" />
+
+	<bean id="statisticsService" class="org.hibernate.jmx.StatisticsService">
+	    <property name="statisticsEnabled" value="true"/>
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

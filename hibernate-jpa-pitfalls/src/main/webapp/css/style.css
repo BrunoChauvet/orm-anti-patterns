@@ -1,0 +1,131 @@
+body {
+    margin: 2px;
+    background-color: #F1FBFB;
+    font-family: sans-serif;
+    color: #333333;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+}
+
+div#logo {
+    max-width: 960px;
+    margin: 10px;
+}
+
+div#menu {
+    background-color: #2198F1;
+    margin: 10px 0;
+}
+
+div#header {
+    width: 100%;
+    min-height: 50px;
+}
+
+div#content {
+    padding: 5px;
+    margin: 10px;
+}
+
+div.paragraph {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border: 1px solid #A0A0A0
+}
+
+div#footer {
+    width: 100%;
+    font-size: 0.6em;
+    text-align: center;
+    height: 10px;
+    line-height: 10px;
+}
+
+div.auction-header {
+    height: 100px;
+}
+
+div.ufe-logo {
+    float: left;
+    width: 170px;
+    height: 100px;
+}
+
+div.header-wrap {
+    float: left;
+    width: 780px;
+    text-align: center;
+}
+
+div.header-title {
+    float: left;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+table tr td {
+    vertical-align: top;
+}
+
+tr.customer-separator {
+    line-height: 20px;
+    background-color: #B0B0B0;
+}
+
+div.block-body {
+    padding: 5px;
+}
+
+div.block-body div {
+    float: left;
+}
+
+div.clear {
+    clear: both;
+}
+
+div.block-body div.spacer {
+    clear: both;
+    height: 10px;
+    width: 30px;
+    float: none;
+}
+
+.short {
+    width: 80px;
+}
+
+.medium {
+    width: 140px;
+}
+
+.long {
+    width: 240px;
+}
+
+.ui-widget-header {
+    min-height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.ui-state-error {
+    min-height: 25px;
+    line-height: 25px;
+}
+
+.ui-widget {
+    margin-top: 10px;
+}

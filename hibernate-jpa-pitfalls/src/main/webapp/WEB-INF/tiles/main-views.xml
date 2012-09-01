@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<definition name="web-layout" template="/WEB-INF/jsp/layout/layout.jsp">
+		<put-attribute name="title" value="Transactions" />
+		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+	</definition>
+	
+	<definition name="home" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/home.jsp" />
+	</definition>
+	
+	<definition name="actions" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/actions.jsp" />
+	</definition>
+	
+	<definition name="load" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/load.jsp" />
+	</definition>
+	
+	<definition name="stats" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/stats.jsp" />
+	</definition>
+	
+	<definition name="list-customers" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/list-customers.jsp" />
+	</definition>
+	
+	<definition name="list-customers-last-order" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/list-customers-last-order.jsp" />
+	</definition>
+	
+	<definition name="list-orders" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/list-orders.jsp" />
+	</definition>
+	
+	<definition name="report" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/report.jsp" />
+	</definition>
+	
+	<definition name="lazyinitexception" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/lazyinitexception.jsp" />
+	</definition>
+	
+	<definition name="nplusone" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/nplusone.jsp" />
+	</definition>
+	
+	<definition name="paginatejoinfetch" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/paginatejoinfetch.jsp" />
+	</definition>
+	
+	<definition name="paginateresults" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/paginateresults.jsp" />
+	</definition>
+	
+	<definition name="aggregatequeries" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/aggregatequeries.jsp" />
+	</definition>
+	
+	<definition name="aggregatequeriessql" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/aggregatequeriessql.jsp" />
+	</definition>
+	
+	<definition name="extralazy" extends="web-layout">
+		<put-attribute name="main" value="/WEB-INF/jsp/pages/extralazy.jsp" />
+	</definition>
+
+</tiles-definitions>

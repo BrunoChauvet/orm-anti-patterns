@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="transaction" transaction-type="RESOURCE_LOCAL">
+		<class>com.dius.transaction.model.Customer</class>
+		<class>com.dius.transaction.model.Order</class>
+		<class>com.dius.transaction.model.PaymentMethod</class>
+	</persistence-unit>
+
+</persistence>
