@@ -13,7 +13,7 @@
 	</tr>
 	<c:forEach items="${customers}" var="customer" varStatus="statusCustomer">
 		<c:choose>
-			<c:when test="${statusCustomer.index < 10}">
+			<c:when test="${not empty param.listAll or statusCustomer.index < 10}">
 				<tr class="customer-separator"><td colspan="4"></td></tr>
 				<tr>
 					<td rowspan="${fn:length(customer.orders) + 1}">
@@ -33,12 +33,16 @@
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${customer.orders}" var="order"></c:forEach>
+				<c:forEach items="${customer.orders}" var="order">
+					<c:set var="orderAmount" value="${order.amount}"/>
+					<c:set var="orderDate" value="${order.date}"/>
+					<c:set var="paymentMethodName" value="${order.paymentMethod.name}"/>
+				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 	
-	<c:if test="${fn:length(customers) > 10}">
+	<c:if test="${empty param.listAll and fn:length(customers) > 10}">
 		<tr><td>Data not displayed after 10 customers</td></tr>
 	</c:if>
 </table>

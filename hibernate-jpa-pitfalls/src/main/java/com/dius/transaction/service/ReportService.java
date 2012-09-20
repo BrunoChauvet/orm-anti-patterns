@@ -35,7 +35,7 @@ public class ReportService {
         List<Customer> customers = customerRepository.findAllCustomersFetchOrders();
         for (Customer customer : customers) {
             Map<String, Object> customerMap = new HashMap<String, Object>();
-            customerMap.put("customer", customer);
+            customerMap.put("customer", customer.getName());
 
             double amount = 0.0D;
             Date minDate = null;

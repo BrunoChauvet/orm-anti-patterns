@@ -38,6 +38,11 @@ public class CustomerController {
         return new ModelAndView(LIST_CUSTOMERS_VIEW, CUSTOMERS, customerService.findAllCustomersFetchOrdersAndPaymentMethods());
     }
 
+    @RequestMapping("/findAllCustomersSubSelectOrders")
+    public ModelAndView findAllCustomersSubSelectOrders() {
+        return new ModelAndView(LIST_CUSTOMERS_VIEW, CUSTOMERS, customerService.findAllCustomersSubSelectOrders());
+    }
+
     @RequestMapping("/findCustomers/{page}")
     public ModelAndView findAllCustomersFetchOrders(@PathVariable("page") Integer page) {
         Pageable pageable = new PageRequest(page, 5);

@@ -22,7 +22,7 @@
 				<li><a href="<spring:url value="/lazyinitexception" />">LazyInitException</a></li>
 				<li><a href="<spring:url value="/nplusone" />">N+1</a></li>
 				<li><a href="<spring:url value="/paginatejoinfetch" />">Pagination bad</a></li>
-				<li><a href="<spring:url value="/paginateresults" />">Paginate good</a></li>
+				<li><a href="<spring:url value="/paginateresults" />">Pagination good</a></li>
 				<li><a href="<spring:url value="/aggregatequeries" />">Aggregate Queries bad</a></li>
 				<li><a href="<spring:url value="/aggregatequeriessql" />">Aggregate Queries good</a></li>
 				<li><a href="<spring:url value="/extralazy" />">Extra Lazy Fetching</a></li>

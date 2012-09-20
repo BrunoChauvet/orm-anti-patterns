@@ -53,6 +53,9 @@ public class ReportRepositoryTest extends AbstractTransactionalJUnit4SpringConte
         addOrderToCustomer(customer2, 55.60D);
         addOrderToCustomer(customer2, 100.0D);
         addOrderToCustomer(customer2, 100.0D);
+
+        customer1 = customerRepository.save(customer1);
+        customer2 = customerRepository.save(customer2);
     }
 
     @Test
@@ -62,20 +65,15 @@ public class ReportRepositoryTest extends AbstractTransactionalJUnit4SpringConte
         Assert.assertEquals(customerReport.size(), 2);
 
         Map<String, Object> reportEntry1 = customerReport.get(0);
-        Assert.assertEquals(reportEntry1.get("customer"), customer1);
+        Assert.assertEquals(reportEntry1.get("customer"), customer1.getName());
         Assert.assertEquals(((BigDecimal) reportEntry1.get("total")).doubleValue(), 200.0D);
 
         Map<String, Object> reportEntry2 = customerReport.get(1);
-        Assert.assertEquals(reportEntry2.get("customer"), customer2);
+        Assert.assertEquals(reportEntry2.get("customer"), customer2.getName());
         Assert.assertEquals(((BigDecimal) reportEntry2.get("total")).doubleValue(), 303.1D);
     }
 
     private Order addOrderToCustomer(Customer customer, double amount) {
-        Order order = new Order();
-        order.setAmount(new BigDecimal(amount));
-        order.setDate(new Date());
-        order.setCustomer(customer);
-        order.setPaymentMethod(paymentMethodRepository.findAll().get(0));
-        return orderRepository.save(order);
+        return customer.addOrder(BigDecimal.valueOf(amount), new Date(), paymentMethodRepository.findAll().get(0));
     }
 }

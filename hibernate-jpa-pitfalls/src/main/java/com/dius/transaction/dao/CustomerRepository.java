@@ -13,25 +13,17 @@ import com.dius.transaction.model.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     @Query("SELECT DISTINCT c " //
             + "FROM Customer c " //
-            + "ORDER BY c.name")
-    public List<Customer> findAllCustomers();
-
-    @Query("SELECT DISTINCT c " //
-            + "FROM Customer c " //
-            + "LEFT JOIN FETCH c.orders " //
-            + "ORDER BY c.name")
+            + "LEFT JOIN FETCH c.orders")
     public List<Customer> findAllCustomersFetchOrders();
 
     @Query("SELECT DISTINCT c " //
             + "FROM Customer c " //
             + "LEFT JOIN FETCH c.orders o " //
-            + "LEFT JOIN FETCH o.paymentMethod " //
-            + "ORDER BY c.name")
+            + "LEFT JOIN FETCH o.paymentMethod")
     public List<Customer> findAllCustomersFetchOrdersAndPaymentMethods();
 
     @Query("SELECT DISTINCT c " //
             + "FROM Customer c " //
-            + "LEFT JOIN FETCH c.orders " //
-            + "ORDER BY c.name")
+            + "LEFT JOIN FETCH c.orders")
     public List<Customer> findAllCustomersFetchOrders(Pageable pageable);
 }

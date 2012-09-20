@@ -12,7 +12,7 @@
 	</tr>
 	<c:forEach items="${entries}" var="entry">
 		<tr>
-			<td><c:out value="${entry['customer'].name}"/></td>
+			<td><c:out value="${entry['customer']}"/></td>
 			<td><fmt:formatNumber value="${entry['total']}" maxFractionDigits="2" type="currency" currencySymbol="$"/></td>
 			<td><fmt:formatDate value="${entry['since']}"/></td>
 		</tr>

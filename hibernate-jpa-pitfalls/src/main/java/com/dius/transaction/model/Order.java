@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,13 +26,20 @@ public class Order {
     @NotNull
     private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "customer", insertable = false, updatable = false, nullable = true)
     private Customer customer;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @NotNull
     private PaymentMethod paymentMethod;
+
+    public Order() {
+    }
+
+    public Order(Customer customer, PaymentMethod paymentMethod) {
+        this.customer = customer;
+        this.paymentMethod = paymentMethod;
+    }
 
     public Long getId() {
         return id;
